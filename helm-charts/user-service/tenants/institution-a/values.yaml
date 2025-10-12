@@ -2,7 +2,7 @@
 
 image:
   # Replace with the tag from your successful GitHub Actions run
-  tag: "0a97817b6ade9f46837855d676c4cca3a2471fc9"
+  tag: "e1806aa"
 
 # You can add other tenant-specific overrides here in the future
 # replicaCount: 2
