@@ -8,18 +8,16 @@ metadata:
 spec:
   project: default
   source:
-    # The source is now the repo that contains the values file
-    repoURL: 'https://github.com/HariomKhaladkar/edtech-infra-config.git'
-    targetRevision: HEAD
-    # The path now points to the folder containing the Helm chart AND our values file
-    path: helm-charts/user-service/tenants/institution-a
+    # Point to the repo where the Helm chart lives
+    repoURL: 'https://github.com/HariomKhaladkar/edtech-app-code.git'
+    path: helm-chart/user-service
+    targetRevision: main
     helm:
-      # We tell helm where to find the chart by referencing the other repository
-      chart: 'https://github.com/HariomKhaladkar/edtech-app-code.git'
-      targetRevision: 'main'
-      # And we specify the name of our values file
-      valueFiles:
-        - values.yaml
+      # We provide the specific values for this tenant directly here.
+      # This is the simplest and most compatible method.
+      values: |
+        image:
+          tag: "0a97817b6ade9f46837855d676c4cca3a2471fc9"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: institution-a
