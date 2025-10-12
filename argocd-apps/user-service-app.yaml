@@ -1,3 +1,5 @@
+# argocd-apps/user-service-app.yaml
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,19 +8,18 @@ metadata:
 spec:
   project: default
   source:
-    # This points to the Helm Chart in your APP repo
-    repoURL: 'https://github.com/HariomKhaladkar/edtech-app-code.git'
-    path: helm-chart/user-service
-    targetRevision: main # The branch to track for the chart itself
+    # The source is now the repo that contains the values file
+    repoURL: 'https://github.com/HariomKhaladkar/edtech-infra-config.git'
+    targetRevision: HEAD
+    # The path now points to the folder containing the Helm chart AND our values file
+    path: helm-charts/user-service/tenants/institution-a
     helm:
-      # This tells Argo to get the values from our INFRA repo
+      # We tell helm where to find the chart by referencing the other repository
+      chart: 'https://github.com/HariomKhaladkar/edtech-app-code.git'
+      targetRevision: 'main'
+      # And we specify the name of our values file
       valueFiles:
         - values.yaml
-      # We configure a second source for the values file
-      sources:
-        - repoURL: 'https://github.com/HariomKhaladkar/edtech-infra-config.git'
-          targetRevision: main
-          path: helm-charts/user-service/tenants/institution-a
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: institution-a
@@ -27,4 +28,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true # Tell Argo to create the namespace if it doesn't exist
+      - CreateNamespace=true
