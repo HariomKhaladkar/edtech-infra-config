@@ -1,9 +1,0 @@
-# helm-charts/user-service/tenants/institution-a/values.yaml
-
-image:
-  # Replace with the tag from your successful GitHub Actions run
-  tag: "e1806aa"
-
-# You can add other tenant-specific overrides here in the future
-# replicaCount: 2
-# theme: "blue"
