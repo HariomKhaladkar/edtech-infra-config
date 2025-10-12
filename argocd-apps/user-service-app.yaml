@@ -17,7 +17,7 @@ spec:
       # This is the simplest and most compatible method.
       values: |
         image:
-          tag: "e1806aa"
+          tag: "f770386"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: institution-a
