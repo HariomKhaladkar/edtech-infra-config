@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: user-service-institution-a
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # This points to the Helm Chart in your APP repo
+    repoURL: 'https://github.com/HariomKhaladkar/edtech-app-code.git'
+    path: helm-chart/user-service
+    targetRevision: main # The branch to track for the chart itself
+    helm:
+      # This tells Argo to get the values from our INFRA repo
+      valueFiles:
+        - values.yaml
+      # We configure a second source for the values file
+      sources:
+        - repoURL: 'https://github.com/HariomKhaladkar/edtech-infra-config.git'
+          targetRevision: main
+          path: helm-charts/user-service/tenants/institution-a
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: institution-a
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # Tell Argo to create the namespace if it doesn't exist
