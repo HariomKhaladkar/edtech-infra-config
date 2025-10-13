@@ -18,9 +18,9 @@ spec:
       values: |
         image:
 <<<<<<< HEAD
-          tag: "v5-final"
+          tag: "036db0e92c1cbb69cf12b2cc2696ac9aa6a4bef7"
 =======
-          tag: "6edeaabfa8ec6e53df061c9efea841bdd9a27c08"
+          tag: "036db0e92c1cbb69cf12b2cc2696ac9aa6a4bef7"
 >>>>>>> 19b931c3b825600489a9d85b6ec2646eb08ae9c1
   destination:
     server: 'https://kubernetes.default.svc'
