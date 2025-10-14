@@ -1,5 +1,3 @@
-# argocd-apps/user-service-app.yaml
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -12,12 +10,9 @@ spec:
     path: helm-chart/user-service
     targetRevision: main
     helm:
-  values: |
-    image:
-      tag: "..." # This tag was correctly set by your automation bot
-    config:
-      greeting: "Hello from the Final, Fully Configured Automation!"
-
+      values: |
+        image:
+          tag: "v7-final-check"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: institution-a
