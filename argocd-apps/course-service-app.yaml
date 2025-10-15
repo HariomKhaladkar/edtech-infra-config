@@ -15,7 +15,7 @@ spec:
       values: |
         image:
           # This will be updated automatically by our new CI job
-          tag: "0722ff92254e023d550e6e85c6ada01e9851db06"
+          tag: "11777b6adc51b5077a97ac4223bd627de820123d"
   destination:
     server: 'https://kubernetes.default.svc'
     # We'll deploy it to the same namespace for simplicity
